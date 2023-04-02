@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 
-class WebsiteChecker:
+class WebsiteCheckerPolish:
     def __init__(self, source_url):
         self.source_url = source_url
         self.urls = []
@@ -56,7 +56,7 @@ class WebsiteChecker:
             print(self.used_urls)
 
 
-checker = WebsiteChecker('https://www.zyxware.com/articles/4344/list-of-fortune-500-companies-and-their-websites')
+checker = WebsiteCheckerPolish('https://www.zyxware.com/articles/4344/list-of-fortune-500-companies-and-their-websites')
 checker.scrape_urls
 checker.polish_urls
 checker.check_urls
