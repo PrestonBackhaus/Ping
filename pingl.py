@@ -1,50 +1,62 @@
 import requests
 from bs4 import BeautifulSoup
 
-urls = []
+class WebsiteCheckerPolishMini:
+    
+    def __init__(self):
+        self.urls = []
+        self.used_urls = []
+        self.polish_chars = ['ą', 'ć', 'ę', 'ł', 'ń', 'ó', 'ś', 'ź', 'ż']
+        self.english_chars = ['a', 'c', 'e', 'l', 'n', 'o', 's', 'z', 'z']
+        self.source = 'https://www.zyxware.com/articles/4344/list-of-fortune-500-companies-and-their-websites'
+    
+    def scrape_urls(self):
+        html_text = requests.get(self.source).text
+        soup = BeautifulSoup(html_text, 'lxml')
+        divs = soup.find_all('div', class_='table-responsive')
+        for d in divs:
+            trs = d.find_all('tr')
+            for t in trs:
+                link = t.find('a')
+                if link and link.get('href'):
+                    url = link.get('href')
+                    self.urls.append(url)
+    
+    def replace_chars(self):
+        # if 'l' is not in the url, delete the url from the list
+        for i in self.urls[:]:
+            if 'l' not in i:
+                self.urls.remove(i)
 
-used_urls = []
+        # for each url, replace 'l' with 'ł'
+        for i in range(len(self.urls)):
+            self.urls[i] = self.urls[i].replace('l', 'ł')
+        
+    def check_urls(self):
+        # for each url get online status
+        for i in range(len(self.urls)):
+            try:
+                response = requests.get(self.urls[i])
+                if response.status_code == 200:
+                    print(f"{self.urls[i]} is already online.\n\n")
+                    self.used_urls.append(self.urls[i])
+                else:
+                    print(f"{self.urls[i]} is offline. \n\n")
+                    self.used_urls.append(self.urls[i])
+            except requests.exceptions.RequestException as e:
+                print(f"{self.urls[i]} is offline or not in use: {e}")
+                print("URL INVALID\n\n")
+    
+    def run(self):
+        self.scrape_urls()
+        self.replace_chars()
+        self.check_urls()
 
-source = 'https://www.zyxware.com/articles/4344/list-of-fortune-500-companies-and-their-websites'   # website for urls
-html_text = requests.get(source).text   # get html text
-soup = BeautifulSoup(html_text, 'lxml')  # create soup object, don't know what 'lxml' does but is necessary
-divs = soup.find_all('div', class_='table-responsive')  # find all divs which contain the companies
-for d in divs:
-    trs = d.find_all('tr')   # find all table rows, each contains a link
-    for t in trs:
-        link = t.find('a')  # find the link itself which is stored in 'a' tag
-        if link and link.get('href'): # if link is valid and not None
-            url = link.get('href')  # get the link itself
-            urls.append(url) # add it to the list of urls
-
-# shows urls are being added, not needed
-print(urls)
-
-# if 'l' is not in the url, delete the url from the list
-for i in urls[:]:
-    if 'l' not in i:
-        urls.remove(i)
-
-# for each url, reaplce l with ł
-for i in range(len(urls)):
-    urls[i] = urls[i].replace('l', 'ł')
-
-# for each url get online status
-for i in range(len(urls)):
-    try:
-        response = requests.get(urls[i])
-        if response.status_code == 200:     #if online, print online
-            print(f"{urls[i]} is already online.\n\n")
-            used_urls.append(url[i])
+        if len(self.used_urls) == 0:
+            print(self.used_urls)
+            print("NO URLS IN USE!")
         else:
-            print(f"{urls[i]} is offline. \n\n")        # if offline but in use, print offline
-            used_urls.append(url[i])
-    except requests.exceptions.RequestException as e:       # if url invalid/error
-        print(f"{urls[i]} is offline or not in use: {e}")       # print not in use or error
-        print("URL INVALID\n\n")
+            print(self.used_urls)
 
-if len(used_urls) == 0:
-    print(used_urls)
-    print("NO URLS IN USE!")
-else:
-    print(used_urls)
+checker = WebsiteCheckerPolishMini()
+checker.run()

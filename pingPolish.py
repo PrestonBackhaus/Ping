@@ -54,10 +54,13 @@ class WebsiteCheckerPolish:
             print("NO URLS IN USE!")
         else:
             print(self.used_urls)
+            
+    def run(self):
+        self.scrape_urls()
+        self.polish_urls()
+        self.check_urls()
+        self.print_used_urls()
 
 
 checker = WebsiteCheckerPolish('https://www.zyxware.com/articles/4344/list-of-fortune-500-companies-and-their-websites')
-checker.scrape_urls
-checker.polish_urls
-checker.check_urls
-checker.print_used_urls
+checker.run()
