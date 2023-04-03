@@ -2,6 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 
+FORTUNEURL = 'https://www.zyxware.com/articles/4344/list-of-fortune-500-companies-and-their-websites'
+
 class WebsiteCheckerPolish:
     def __init__(self, source_url):
         self.source_url = source_url
@@ -24,6 +26,7 @@ class WebsiteCheckerPolish:
         polish_chars = ['ą', 'ć', 'ę', 'ł', 'ń', 'ó', 'ś', 'ź', 'ż']
         english_chars = ['a', 'c', 'e', 'l', 'n', 'o', 's', 'z', 'z']
         for i in range(len(self.urls)):
+            http = urls[i].split(':')[0]
             parsed_url = urlparse(self.urls[i])
             domain_name = parsed_url.netloc
             domain_name = domain_name.replace('www.', '')
@@ -31,7 +34,7 @@ class WebsiteCheckerPolish:
             after_domain = domain_name.split('.')[1]
             for j in range(len(polish_chars)):
                 domain = domain.replace(english_chars[j], polish_chars[j])
-            domain = f'https://{domain}.{after_domain}'
+            domain = f'{http}://{domain}.{after_domain}'
             self.urls[i] = domain
     
     def check_urls(self):
@@ -47,6 +50,7 @@ class WebsiteCheckerPolish:
             except requests.exceptions.RequestException as e:
                 print(f"{self.urls[i]} is offline or not in use: {e}")
                 print("URL INVALID\n\n")
+            
     
     def print_used_urls(self):
         if len(self.used_urls) == 0:
@@ -60,7 +64,3 @@ class WebsiteCheckerPolish:
         self.polish_urls()
         self.check_urls()
         self.print_used_urls()
-
-
-checker = WebsiteCheckerPolish('https://www.zyxware.com/articles/4344/list-of-fortune-500-companies-and-their-websites')
-checker.run()
