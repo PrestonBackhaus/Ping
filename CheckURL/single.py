@@ -27,7 +27,7 @@ class SingleChecker:
             self.output = 'URL INVALID\n\n'
         else:
             try:
-                response = requests.get(url)
+                response = requests.get(url) 
                 if response.status_code == 200:
                     print(f'{url} is already online.\n\n')
                     self.output = f'{url} is already online.\n\n'
@@ -50,3 +50,4 @@ class SingleChecker:
         for url in self.urls:
             self.checkURL(url)
         return self.trueURLs
+    
