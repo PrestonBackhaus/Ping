@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 
@@ -11,21 +10,16 @@ function launchGUI() {
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div className="launch-text">
+          <p>Launch website checker below:</p>
+        </div>
         <button onClick={launchGUI}>Launch GUI</button>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <div className="description">
+          <p>This app takes a web address and will check/replace every 
+            character of a specific language with its relative character 
+            in English. It then returns all found online and offline 
+            websites that exist.</p>
+        </div>
     </div>
   );
 }
