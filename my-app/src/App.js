@@ -3,7 +3,7 @@ import axios from 'axios'; // Importing Axios library for HTTP requests
 import monkeys_dancing from './images/monkeys_dancing.gif'; // Importing gif file for App component
 
 function launchGUI() {
-  axios.get('http://localhost:5000/launch') // Making a GET request to '/launch' route to launch the GUI
+  axios.get('http://localhost:5001/launch') // Making a GET request to '/launch' route to launch the GUI
     .then(response => console.log(response.data.message)) // Log message returned from server
     .catch(error => console.log(error)); // Log error if any
 }

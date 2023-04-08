@@ -20,10 +20,10 @@ class AllCheckerGUI(tk.Frame):
         self.check_button.grid(row=1, column=1, padx=5, pady=5, sticky='w')
 
         # Create labels to display AllChecker output
-        self.online_label = ttk.Label(self, text='Online URLs: ')
-        self.online_label.grid(row=2, column=0, padx=5, pady=5, sticky='w')
-        self.offline_label = ttk.Label(self, text='Offline URLs: ')
-        self.offline_label.grid(row=3, column=0, padx=5, pady=5, sticky='w')
+        self.online_label = ttk.Label(self, text='Online URLs: ', wraplength=500)
+        self.online_label.grid(row=2, column=1, padx=5, pady=5, sticky='w')
+        self.offline_label = ttk.Label(self, text='Offline URLs: ', wraplength=500)
+        self.offline_label.grid(row=3, column=1, padx=5, pady=5, sticky='w')
 
     def run_all_checker(self):
         # Get user input from textbox
