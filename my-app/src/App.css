@@ -63,3 +63,17 @@ button {
   margin-left: auto;
   margin-right: auto;
 }
+
+.container {
+  border: 5px solid red;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.monkeys-gif {
+  display: block; /* Make the image a block element */
+  margin: auto; /* Center the image horizontally */
+  padding: 20px; /* Add padding to the image */
+}
