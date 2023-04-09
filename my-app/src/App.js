@@ -10,23 +10,28 @@ function launchGUI() {
 
 function App() {
   return (
-    <div>
-      <img src={monkeys_dancing} alt="Monkeys Dancing" className="monkeys-gif" />
-      <div className="container">
-        {/* Remember this is how to create a comment in the html portions */}
-          {/* Text above button */}
+    <div className="app">
+      <header className="app-header">
+        <h1>Website Checker</h1>
+      </header>
+      <main className="app-main">
+        <img src={monkeys_dancing} alt="Monkeys Dancing" className="monkeys-gif" />
+        <div className="container">
           <div className="launch-text">
             <p>Launch website checker below:</p>
           </div>
-          <button onClick={launchGUI}>Launch GUI</button>
-          {/* Comment for description div */}
+          <button onClick={launchGUI} className="launch-button">Launch GUI</button>
           <div className="description">
             <p>This app takes a web address and will check/replace every 
               character of a specific language with its relative character 
               in English. It then returns all found online and offline 
               websites that exist.</p>
           </div>
-      </div>
+        </div>
+      </main>
+      <footer className="app-footer">
+        <p>&copy; 2023 Website Checker. All rights reserved.</p>
+      </footer>
     </div>
   );
 }

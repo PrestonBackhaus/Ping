@@ -1,79 +1,87 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #ADD8E6;
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+
+.app {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  background-color: #282c34;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.app-main {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: #f7f7f7;
+  padding: 2rem;
 }
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
-.App {
-  text-align: center;
-}
-
-button {
-  margin-top: 20px;
-}
-
-.launch-text {
-  color: black;
-  text-align: center;
-  margin-bottom: 20px;
-  background-color: transparent;
-}
-
-.description {
-  margin-top: 20px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  word-wrap: break-word;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+.monkeys-gif {
+  width: 200px;
+  margin-bottom: 2rem;
 }
 
 .container {
-  border: 5px solid red;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  max-width: 600px;
+  text-align: center;
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
 }
 
-.monkeys-gif {
-  display: block; /* Make the image a block element */
-  margin: auto; /* Center the image horizontally */
-  padding: 20px; /* Add padding to the image */
+.launch-text {
+  margin-bottom: 1rem;
+}
+
+.launch-button {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.launch-button:hover {
+  background-color: #0056b3;
+}
+
+.description {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #333;
+  line-height: 1.4;
+}
+
+.app-footer {
+  background-color: #282c34;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
 }
